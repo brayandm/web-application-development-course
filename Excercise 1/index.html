@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Survey</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Survey Form</h1>
+        </div>
+        <div class="form">
+            <p>Let us know how we can improve freeCodeCamp</p>
+
+            <div class="piece">
+                <div class="left">
+                    <label class="required" for="name">Name</label>
+                </div>
+                <div class="right">
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="piece">
+                <div class="left">
+                    <label class="required" for="email">Email</label>
+                </div>
+                <div class="right">
+                    <input
+                        type="email"
+                        placeholder="Enter your Email"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="piece">
+                <div class="left">
+                    <label class="required" for="number">Age</label>
+                </div>
+                <div class="right">
+                    <input
+                        type="number"
+                        id="number"
+                        placeholder="Enter your age"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="piece">
+                <div class="left">
+                    <label for="dropdown"
+                        >Which option best describes your current role?</label
+                    >
+                </div>
+                <div class="right">
+                    <select id="dropdown" required>
+                        <option disabled selected value>
+                            Select current role
+                        </option>
+                        <option value="student">Student</option>
+                        <option value="job">Full Time Job</option>
+                        <option value="learner">Full Time Learner</option>
+                        <option value="prefer">Prefer not to say</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="piece">
+                <div class="left">
+                    <label for="radio" class="required"
+                        >How likely is that you would recommend freeCodeCamp to
+                        a friend?</label
+                    >
+                </div>
+                <div class="right">
+                    <div class="list">
+                        <div class="item">
+                            <input
+                                type="radio"
+                                name="radio"
+                                value="definitely"
+                                required
+                            />
+                            <label for="definitely">Definitely</label>
+                        </div>
+                        <div class="item">
+                            <input
+                                type="radio"
+                                name="radio"
+                                value="maybe"
+                                required
+                            />
+                            <label for="maybe">Maybe</label>
+                        </div>
+                        <div class="item">
+                            <input
+                                type="radio"
+                                name="radio"
+                                value="not-sure"
+                                required
+                            />
+                            <label for="not-sure">Not sure</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="piece">
+                <div class="left">
+                    <label for="like">What do you like most in FCC:</label>
+                </div>
+                <div class="right">
+                    <select id="like" required>
+                        <option disabled selected value>
+                            Select an option
+                        </option>
+                        <option value="challenges">Challenges</option>
+                        <option value="projects">Projects</option>
+                        <option value="community">Community</option>
+                        <option value="open-source">Open Source</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="piece">
+                <div class="left">
+                    <label for="improve"
+                        >Things that should be improved in the future (Check all
+                        that apply):</label
+                    >
+                </div>
+                <div class="right">
+                    <div class="list">
+                        <div class="item">
+                            <input
+                                type="checkbox"
+                                name="improve"
+                                value="front-end"
+                                required
+                            />
+                            <label for="front-end">Front-end Projects</label>
+                        </div>
+                        <div class="item">
+                            <input
+                                type="checkbox"
+                                name="improve"
+                                value="back-end"
+                                required
+                            />
+                            <label for="back-end">Back-end Projects</label>
+                        </div>
+                        <div class="item">
+                            <input
+                                type="checkbox"
+                                name="improve"
+                                value="data-visualization"
+                                required
+                            />
+                            <label for="data-visualization"
+                                >Data Visualization</label
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

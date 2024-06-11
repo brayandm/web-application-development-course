@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calendar {
+}
+
+.calendar__header,
+.calendar__week {
+    display: flex;
+}
+
+.calendar__header__day,
+.calendar__day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.calendar__header__day {
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+}
+
+.calendar__day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.calendar__day.light_day {
+    color: #999;
+}
+
+.calendar__day:hover {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.header {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.header p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.header svg {
+    cursor: pointer;
+    transform: scale(0.6);
+    margin-left: 10px;
+}
