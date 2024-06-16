@@ -61,9 +61,9 @@ class Vector {
     }
 
     /**
-     * Calculates the direction angle of the vector in radians.
+     * Calculates the direction angle of the vector in specified units.
      * @param {boolean} [rad=true] - Whether to return the angle in radians.
-     * @returns {number} The direction angle of the vector in radians.
+     * @returns {number} The direction angle of the vector in the specified units.
      */
     angle(rad = true) {
         const angle = Math.atan2(this._y, this._x);
