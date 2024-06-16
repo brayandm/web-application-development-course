@@ -14,6 +14,16 @@ class Vector {
     }
 
     /**
+     * Creates a vector using the provided coordinates.
+     * @param {number} x - The x-coordinate.
+     * @param {number} y - The y-coordinate.
+     * @returns {Vector} A new vector.
+     */
+    static of(x, y) {
+        return new Vector(x, y);
+    }
+
+    /**
      * Adds two vectors.
      * @param {Vector} v - The vector to add.
      * @returns {Vector} A new vector that is the sum of this and the given vector.
@@ -91,7 +101,7 @@ class Vector {
 const a = new Vector(2, 1);
 console.log(`Vector a: (${a.x}, ${a.y})`);
 
-const b = new Vector(-2, 3);
+const b = Vector.of(-2, 3);
 console.log(`Vector b: (${b.x}, ${b.y})`);
 
 const scalar = 2;
