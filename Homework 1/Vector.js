@@ -64,8 +64,9 @@ class Vector {
      * Calculates the direction angle of the vector in radians.
      * @returns {number} The direction angle of the vector in radians.
      */
-    angle() {
-        return Math.atan2(this._y, this._x);
+    angle(rad = true) {
+        const angle = Math.atan2(this._y, this._x);
+        return rad ? angle : (angle * 180) / Math.PI;
     }
 
     /**
@@ -86,10 +87,10 @@ class Vector {
 }
 
 // Example usage:
-const a = new Vector(1, 2);
+const a = new Vector(2, 1);
 console.log(`Vector a: (${a.x}, ${a.y})`);
 
-const b = new Vector(3, -2);
+const b = new Vector(-2, 3);
 console.log(`Vector b: (${b.x}, ${b.y})`);
 
 const scalar = 2;
