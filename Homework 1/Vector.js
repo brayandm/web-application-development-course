@@ -62,6 +62,7 @@ class Vector {
 
     /**
      * Calculates the direction angle of the vector in radians.
+     * @param {boolean} [rad=true] - Whether to return the angle in radians.
      * @returns {number} The direction angle of the vector in radians.
      */
     angle(rad = true) {
