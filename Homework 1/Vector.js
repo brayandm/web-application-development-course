@@ -117,4 +117,4 @@ console.log(`Unit vector of sum: (${unit.x}, ${unit.y})`);
 
 const angle = sum.angle();
 
-console.log(`Direction angle of sum: ${angle}`);
+console.log(`Direction angle (rad) of sum: ${angle}`);
