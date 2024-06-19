@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 
 const app = express();
 const port = 3005;
@@ -15,33 +14,36 @@ app.listen(port, () => {
 // Rest API:
 app.use(express.json());
 
-app.use(cors());
-
-const posts = [
-    {
-        title: "REST API",
-        body: "REST is an acronym for REpresentational State Transfer",
-    },
-    {
-        title: "JavaScript",
-        body: "Here we learn JavaScript, starting from scratch",
-    },
+const changuitos = [
+    { id: 1, name: "Changuito 1" },
+    { id: 2, name: "Changuito 2" },
+    { id: 3, name: "Changuito 3" },
 ];
 
-app.get("/posts", (req, res) => {
-    res.json(posts);
+app.get("/changuitos", (req, res) => {
+    res.json(changuitos);
 });
 
-app.get("/posts/:postId", (req, res) => {
-    res.json(posts[+req.params["postId"]]);
+app.get("/changuitos/:id", (req, res) => {
+    const changuito = changuitos.find((c) => c.id === +req.params["id"]);
+    if (!changuito) {
+        res.status(404).send("Changuito not found");
+    } else {
+        res.json(changuito);
+    }
 });
 
-app.post("/posts", (req, res) => {
-    const postId = posts.push(req.body) - 1;
-    res.json({ postId });
-});
-
-app.put("/posts/:postId", (req, res) => {
-    posts[+req.params["postId"]] = req.body;
+app.post("/changuitos", (req, res) => {
+    changuitos.push(req.body);
     res.json(req.body);
+});
+
+app.put("/changuitos/:id", (req, res) => {
+    const changuito = changuitos.find((c) => c.id === +req.params["id"]);
+    if (!changuito) {
+        res.status(404).send("Changuito not found");
+    } else {
+        changuito.name = req.body.name;
+        res.json(changuito);
+    }
 });
