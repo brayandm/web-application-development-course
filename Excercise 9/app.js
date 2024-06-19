@@ -20,6 +20,8 @@ const changuitos = [
     { id: 3, name: "Changuito 3" },
 ];
 
+let lastId = 3;
+
 app.get("/changuitos", (req, res) => {
     res.json(changuitos);
 });
@@ -34,8 +36,14 @@ app.get("/changuitos/:id", (req, res) => {
 });
 
 app.post("/changuitos", (req, res) => {
-    changuitos.push(req.body);
-    res.json(req.body);
+    let id = ++lastId;
+
+    const changuito = {
+        id,
+        name: req.body.name,
+    };
+
+    changuitos.push(changuito);
 });
 
 app.put("/changuitos/:id", (req, res) => {
