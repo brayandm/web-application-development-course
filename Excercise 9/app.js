@@ -57,3 +57,13 @@ app.put("/changuitos/:id", (req, res) => {
         res.json(changuito);
     }
 });
+
+app.delete("/changuitos/:id", (req, res) => {
+    const index = changuitos.findIndex((c) => c.id === +req.params["id"]);
+    if (index === -1) {
+        res.status(404).send("Changuito not found");
+    } else {
+        changuitos.splice(index, 1);
+        res.send("Changuito deleted");
+    }
+});
