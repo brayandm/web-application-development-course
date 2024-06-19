@@ -39,11 +39,13 @@ app.post("/changuitos", (req, res) => {
     let id = ++lastId;
 
     const changuito = {
-        id,
+        id: id,
         name: req.body.name,
     };
 
     changuitos.push(changuito);
+
+    res.json(changuito);
 });
 
 app.put("/changuitos/:id", (req, res) => {
