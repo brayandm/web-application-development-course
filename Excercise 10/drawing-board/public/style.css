@@ -1,0 +1,11 @@
+canvas {
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+}
+
+.cursor {
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  background-color: black;
+}

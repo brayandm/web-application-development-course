@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Drawing Board</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="board.js"></script>
+    </head>
+    <body>
+        <div>
+            <label>
+                Choose color:
+                <input type="color" id="colorPicker" />
+            </label>
+        </div>
+        <div>
+            <div
+                style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-top: 10px;
+                "
+            >
+                <canvas id="canvas" width="800" height="600"></canvas>
+                <div
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 10px;
+                    "
+                >
+                    <textarea id="chat" rows="30" cols="30" readonly></textarea>
+                    <div
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 10px;
+                        "
+                    >
+                        <input type="text" id="message" />
+                        <button id="send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <input type="button" id="clearHistory" value="Clear history" />
+        </div>
+    </body>
+</html>
