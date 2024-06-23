@@ -7,6 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import CloseIcon from "@mui/icons-material/Close";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -157,13 +158,22 @@ export default function ProductCard({ product }: ProductCardProps) {
             >
                 <Fade in={open}>
                     <Box sx={modalStyle}>
-                        <Typography
-                            id="product-modal-title"
-                            variant="h6"
-                            component="h2"
+                        <Box
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
                         >
-                            {product.title}
-                        </Typography>
+                            <Typography
+                                id="product-modal-title"
+                                variant="h6"
+                                component="h2"
+                            >
+                                {product.title}
+                            </Typography>
+                            <IconButton onClick={handleClose}>
+                                <CloseIcon />
+                            </IconButton>
+                        </Box>
                         <CardMedia
                             component="img"
                             height="194"
