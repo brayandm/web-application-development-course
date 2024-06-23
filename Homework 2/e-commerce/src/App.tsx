@@ -4,6 +4,7 @@ import Header from "./Header";
 import { Box, CircularProgress } from "@mui/material";
 import Products from "./Products";
 import { Product } from "./ProductCard/ProductCard";
+import Cart from "./Cart";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -43,7 +44,7 @@ function App() {
             ) : !cartTab ? (
                 <Products products={products} cart={cart} setCart={setCart} />
             ) : (
-                <div>Cart</div>
+                <Cart cart={cart} setCart={setCart} />
             )}
         </>
     );
