@@ -28,7 +28,20 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <Card sx={{ maxWidth: 345, margin: "auto", boxShadow: 3 }}>
             <CardHeader
-                title={product.title}
+                title={
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        sx={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            width: "300px",
+                        }}
+                    >
+                        {product.title}
+                    </Typography>
+                }
                 subheader={product.category}
                 sx={{ textAlign: "center", backgroundColor: "#f5f5f5" }}
             />
@@ -44,7 +57,17 @@ export default function ProductCard({ product }: ProductCardProps) {
                 }}
             />
             <CardContent>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                        display: "-webkit-box",
+                        overflow: "hidden",
+                        WebkitBoxOrient: "vertical",
+                        WebkitLineClamp: 5,
+                        textOverflow: "ellipsis",
+                    }}
+                >
                     {product.description}
                 </Typography>
                 <Box
