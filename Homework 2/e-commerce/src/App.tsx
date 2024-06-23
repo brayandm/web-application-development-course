@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
 import { Box, CircularProgress } from "@mui/material";
+import Products from "./Products";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -32,7 +33,7 @@ function App() {
                     <CircularProgress />
                 </Box>
             ) : (
-                <p>Products</p>
+                <Products products={products} />
             )}
         </>
     );
