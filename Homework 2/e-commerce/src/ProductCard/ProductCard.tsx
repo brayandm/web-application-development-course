@@ -29,8 +29,10 @@ export interface Product {
 
 interface ProductCardProps {
     product: Product;
-    cart: Product[];
-    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+    cart: { product: Product; quantity: number }[];
+    setCart: React.Dispatch<
+        React.SetStateAction<{ product: Product; quantity: number }[]>
+    >;
 }
 
 const modalStyle = {
@@ -56,30 +58,65 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
     const handleAddToCartClick = (event: React.MouseEvent) => {
         event.stopPropagation();
 
-        let storageCart = localStorage.getItem("cart") || "[]";
+        const storageCart = localStorage.getItem("cart") || "[]";
 
-        storageCart = JSON.stringify([...JSON.parse(storageCart), product]);
+        const cart = JSON.parse(storageCart);
 
-        localStorage.setItem("cart", storageCart);
+        const productIndex = cart.findIndex(
+            ({
+                product: cartProduct,
+            }: {
+                product: Product;
+                quantity: number;
+            }) => cartProduct.id === product.id
+        );
 
-        setCart(JSON.parse(storageCart));
+        if (productIndex === -1) {
+            cart.push({ product, quantity: 1 });
+        } else {
+            cart[productIndex].quantity++;
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        setCart(cart);
     };
 
     const handleRemoveFromCartClick = (event: React.MouseEvent) => {
         event.stopPropagation();
 
-        let storageCart = localStorage.getItem("cart") || "[]";
+        const storageCart = localStorage.getItem("cart") || "[]";
 
-        storageCart = JSON.stringify(
-            JSON.parse(storageCart).filter(
-                (cartProduct: Product) => cartProduct.id !== product.id
-            )
+        const cart = JSON.parse(storageCart);
+
+        const productIndex = cart.findIndex(
+            ({
+                product: cartProduct,
+            }: {
+                product: Product;
+                quantity: number;
+            }) => cartProduct.id === product.id
         );
 
-        localStorage.setItem("cart", storageCart);
+        if (cart[productIndex].quantity === 1) {
+            cart.splice(productIndex, 1);
+        } else {
+            cart[productIndex].quantity--;
+        }
 
-        setCart(JSON.parse(storageCart));
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        setCart(cart);
     };
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const productIndex = cart.findIndex(
+        ({ product: cartProduct }: { product: Product; quantity: number }) =>
+            cartProduct.id === product.id
+    );
+
+    const quantity = productIndex === -1 ? 0 : cart[productIndex].quantity;
 
     return (
         <>
@@ -170,24 +207,12 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                             color="primary"
                             onClick={handleAddToCartClick}
                         >
-                            <Badge
-                                badgeContent={
-                                    JSON.parse(
-                                        localStorage.getItem("cart") || "[]"
-                                    ).filter(
-                                        (cartProduct: Product) =>
-                                            cartProduct.id === product.id
-                                    ).length
-                                }
-                                color="success"
-                            >
+                            <Badge badgeContent={quantity} color="success">
                                 <AddShoppingCartIcon />
                             </Badge>
                         </IconButton>
                     </Tooltip>
-                    {JSON.parse(localStorage.getItem("cart") || "[]").filter(
-                        (cartProduct: Product) => cartProduct.id === product.id
-                    ).length > 0 ? (
+                    {quantity > 0 ? (
                         <Tooltip title="Remove from cart" placement="top">
                             <IconButton
                                 aria-label="remove from cart"
@@ -283,28 +308,14 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                                     onClick={handleAddToCartClick}
                                 >
                                     <Badge
-                                        badgeContent={
-                                            JSON.parse(
-                                                localStorage.getItem("cart") ||
-                                                    "[]"
-                                            ).filter(
-                                                (cartProduct: Product) =>
-                                                    cartProduct.id ===
-                                                    product.id
-                                            ).length
-                                        }
+                                        badgeContent={quantity}
                                         color="success"
                                     >
                                         <AddShoppingCartIcon />
                                     </Badge>
                                 </IconButton>
                             </Tooltip>
-                            {JSON.parse(
-                                localStorage.getItem("cart") || "[]"
-                            ).filter(
-                                (cartProduct: Product) =>
-                                    cartProduct.id === product.id
-                            ).length > 0 ? (
+                            {quantity > 0 ? (
                                 <Tooltip
                                     title="Remove from cart"
                                     placement="top"
