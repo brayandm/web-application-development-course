@@ -66,18 +66,29 @@ export default function Cart({ cart, setCart, setRefresh }: CartProps) {
                 {cart.map(({ product, quantity }) => (
                     <ListItem
                         key={product.id}
-                        sx={{ display: "flex", alignItems: "center" }}
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: "80%",
+                        }}
                     >
-                        <img
-                            src={product.image}
-                            alt={product.title}
+                        <div
                             style={{
-                                width: 60,
-                                height: 60,
-                                objectFit: "contain",
+                                display: "flex",
+                                alignItems: "center",
                                 marginRight: 16,
                             }}
-                        />
+                        >
+                            <img
+                                src={product.image}
+                                alt={product.title}
+                                width={60}
+                                height={60}
+                                style={{
+                                    marginRight: 16,
+                                }}
+                            />
+                        </div>
                         <Box sx={{ flexGrow: 1 }}>
                             <Typography variant="h6">
                                 {product.title}
