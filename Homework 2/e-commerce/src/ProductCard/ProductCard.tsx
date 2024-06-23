@@ -200,18 +200,7 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                     </Typography>
                 </CardContent>
                 <Divider variant="middle" />
-                <CardActions disableSpacing sx={{ justifyContent: "center" }}>
-                    <Tooltip title="Add to cart" placement="top">
-                        <IconButton
-                            aria-label="add to cart"
-                            color="primary"
-                            onClick={handleAddToCartClick}
-                        >
-                            <Badge badgeContent={quantity} color="success">
-                                <AddShoppingCartIcon />
-                            </Badge>
-                        </IconButton>
-                    </Tooltip>
+                <CardActions disableSpacing sx={{ justifyContent: "flex-end" }}>
                     {quantity > 0 ? (
                         <Tooltip title="Remove from cart" placement="top">
                             <IconButton
@@ -223,6 +212,17 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                             </IconButton>
                         </Tooltip>
                     ) : null}
+                    <Tooltip title="Add to cart" placement="top">
+                        <IconButton
+                            aria-label="add to cart"
+                            color="primary"
+                            onClick={handleAddToCartClick}
+                        >
+                            <Badge badgeContent={quantity} color="success">
+                                <AddShoppingCartIcon />
+                            </Badge>
+                        </IconButton>
+                    </Tooltip>
                 </CardActions>
             </Card>
             <Modal
@@ -299,22 +299,8 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                         </Box>
                         <CardActions
                             disableSpacing
-                            sx={{ justifyContent: "center" }}
+                            sx={{ justifyContent: "flex-end" }}
                         >
-                            <Tooltip title="Add to cart" placement="top">
-                                <IconButton
-                                    aria-label="add to cart"
-                                    color="primary"
-                                    onClick={handleAddToCartClick}
-                                >
-                                    <Badge
-                                        badgeContent={quantity}
-                                        color="success"
-                                    >
-                                        <AddShoppingCartIcon />
-                                    </Badge>
-                                </IconButton>
-                            </Tooltip>
                             {quantity > 0 ? (
                                 <Tooltip
                                     title="Remove from cart"
@@ -329,6 +315,20 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                                     </IconButton>
                                 </Tooltip>
                             ) : null}
+                            <Tooltip title="Add to cart" placement="top">
+                                <IconButton
+                                    aria-label="add to cart"
+                                    color="primary"
+                                    onClick={handleAddToCartClick}
+                                >
+                                    <Badge
+                                        badgeContent={quantity}
+                                        color="success"
+                                    >
+                                        <AddShoppingCartIcon />
+                                    </Badge>
+                                </IconButton>
+                            </Tooltip>
                         </CardActions>
                     </Box>
                 </Fade>
