@@ -15,7 +15,7 @@ import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import { Badge } from "@mui/material";
+import { Badge, Tooltip } from "@mui/material";
 
 export interface Product {
     id: number;
@@ -164,35 +164,39 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                 </CardContent>
                 <Divider variant="middle" />
                 <CardActions disableSpacing sx={{ justifyContent: "center" }}>
-                    <IconButton
-                        aria-label="add to cart"
-                        color="primary"
-                        onClick={handleAddToCartClick}
-                    >
-                        <Badge
-                            badgeContent={
-                                JSON.parse(
-                                    localStorage.getItem("cart") || "[]"
-                                ).filter(
-                                    (cartProduct: Product) =>
-                                        cartProduct.id === product.id
-                                ).length
-                            }
-                            color="success"
+                    <Tooltip title="Add to cart" placement="top">
+                        <IconButton
+                            aria-label="add to cart"
+                            color="primary"
+                            onClick={handleAddToCartClick}
                         >
-                            <AddShoppingCartIcon />
-                        </Badge>
-                    </IconButton>
+                            <Badge
+                                badgeContent={
+                                    JSON.parse(
+                                        localStorage.getItem("cart") || "[]"
+                                    ).filter(
+                                        (cartProduct: Product) =>
+                                            cartProduct.id === product.id
+                                    ).length
+                                }
+                                color="success"
+                            >
+                                <AddShoppingCartIcon />
+                            </Badge>
+                        </IconButton>
+                    </Tooltip>
                     {JSON.parse(localStorage.getItem("cart") || "[]").filter(
                         (cartProduct: Product) => cartProduct.id === product.id
                     ).length > 0 ? (
-                        <IconButton
-                            aria-label="remove from cart"
-                            color="error"
-                            onClick={handleRemoveFromCartClick}
-                        >
-                            <RemoveShoppingCartIcon />
-                        </IconButton>
+                        <Tooltip title="Remove from cart" placement="top">
+                            <IconButton
+                                aria-label="remove from cart"
+                                color="error"
+                                onClick={handleRemoveFromCartClick}
+                            >
+                                <RemoveShoppingCartIcon />
+                            </IconButton>
+                        </Tooltip>
                     ) : null}
                 </CardActions>
             </Card>
