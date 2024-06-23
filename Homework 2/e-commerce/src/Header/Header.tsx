@@ -7,7 +7,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export default function Header() {
     return (
         <>
-            <AppBar position="static">
+            <AppBar
+                position="static"
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    height: "64px",
+                }}
+            >
                 <Toolbar>
                     <Typography
                         variant="h6"
