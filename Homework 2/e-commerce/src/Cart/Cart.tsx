@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Box,
     Typography,
@@ -7,6 +7,9 @@ import {
     List,
     ListItem,
     Button,
+    Modal,
+    Fade,
+    Backdrop,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -20,7 +23,21 @@ interface CartProps {
     setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+    textAlign: "center",
+};
+
 export default function Cart({ cart, setCart, setRefresh }: CartProps) {
+    const [checkoutOpen, setCheckoutOpen] = useState(false);
+
     const handleRemoveFromCart = (id: number) => {
         let localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -44,6 +61,20 @@ export default function Cart({ cart, setCart, setRefresh }: CartProps) {
     };
 
     const handleBackClick = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("tab");
+        window.history.pushState({}, "", url.toString());
+        setRefresh((prev) => !prev);
+    };
+
+    const handleCheckoutOpen = () => {
+        setCheckoutOpen(true);
+    };
+
+    const handleCheckoutClose = () => {
+        setCheckoutOpen(false);
+        localStorage.setItem("cart", "[]");
+        setCart([]);
         const url = new URL(window.location.href);
         url.searchParams.delete("tab");
         window.history.pushState({}, "", url.toString());
@@ -118,6 +149,49 @@ export default function Cart({ cart, setCart, setRefresh }: CartProps) {
             <Typography variant="h6" sx={{ textAlign: "right" }}>
                 Total: ${calculateTotal()}
             </Typography>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={handleCheckoutOpen}
+                sx={{ mt: 2, float: "right" }}
+            >
+                Checkout
+            </Button>
+
+            <Modal
+                aria-labelledby="checkout-modal-title"
+                aria-describedby="checkout-modal-description"
+                open={checkoutOpen}
+                onClose={handleCheckoutClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={checkoutOpen}>
+                    <Box sx={modalStyle}>
+                        <Typography id="checkout-modal-title" variant="h6">
+                            Checkout
+                        </Typography>
+                        <Typography
+                            id="checkout-modal-description"
+                            sx={{ mt: 2 }}
+                        >
+                            Your checkout is done! <br />
+                            The items will be shipped to you soon.
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleCheckoutClose}
+                            sx={{ mt: 2 }}
+                        >
+                            Close
+                        </Button>
+                    </Box>
+                </Fade>
+            </Modal>
         </Box>
     );
 }
