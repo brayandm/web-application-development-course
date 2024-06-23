@@ -2,9 +2,11 @@ import ProductCard, { Product } from "../ProductCard/ProductCard";
 
 interface ProductsProps {
     products: Product[];
+    cart: Product[];
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-export default function Products({ products }: ProductsProps) {
+export default function Products({ products, cart, setCart }: ProductsProps) {
     return (
         <div
             style={{
@@ -16,7 +18,12 @@ export default function Products({ products }: ProductsProps) {
             }}
         >
             {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                    cart={cart}
+                    setCart={setCart}
+                    key={product.id}
+                    product={product}
+                />
             ))}
         </div>
     );

@@ -27,6 +27,8 @@ export interface Product {
 
 interface ProductCardProps {
     product: Product;
+    cart: Product[];
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 const modalStyle = {
@@ -43,7 +45,7 @@ const modalStyle = {
     p: 4,
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, setCart }: ProductCardProps) {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -51,6 +53,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     const handleAddToCartClick = (event: React.MouseEvent) => {
         event.stopPropagation();
+
+        let storageCart = localStorage.getItem("cart") || "[]";
+
+        storageCart = JSON.stringify([...JSON.parse(storageCart), product]);
+
+        localStorage.setItem("cart", storageCart);
+
+        setCart(JSON.parse(storageCart));
     };
 
     return (
