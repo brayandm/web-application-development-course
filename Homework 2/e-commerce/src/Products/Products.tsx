@@ -11,6 +11,7 @@ export default function Products({ products }: ProductsProps) {
                 display: "flex",
                 flexWrap: "wrap",
                 marginTop: "20px",
+                marginBottom: "20px",
                 gap: "20px",
                 justifyContent: "center",
             }}
