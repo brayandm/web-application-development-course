@@ -10,8 +10,7 @@ export default function Products({ products }: ProductsProps) {
             style={{
                 display: "flex",
                 flexWrap: "wrap",
-                marginTop: "20px",
-                marginBottom: "20px",
+                margin: "20px",
                 gap: "20px",
                 justifyContent: "center",
             }}
