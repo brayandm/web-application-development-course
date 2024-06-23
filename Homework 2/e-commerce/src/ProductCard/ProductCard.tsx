@@ -183,13 +183,17 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                             <AddShoppingCartIcon />
                         </Badge>
                     </IconButton>
-                    <IconButton
-                        aria-label="remove from cart"
-                        color="error"
-                        onClick={handleRemoveFromCartClick}
-                    >
-                        <RemoveShoppingCartIcon />
-                    </IconButton>
+                    {JSON.parse(localStorage.getItem("cart") || "[]").filter(
+                        (cartProduct: Product) => cartProduct.id === product.id
+                    ).length > 0 ? (
+                        <IconButton
+                            aria-label="remove from cart"
+                            color="error"
+                            onClick={handleRemoveFromCartClick}
+                        >
+                            <RemoveShoppingCartIcon />
+                        </IconButton>
+                    ) : null}
                 </CardActions>
             </Card>
             <Modal
