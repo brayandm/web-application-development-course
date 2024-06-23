@@ -31,12 +31,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                 title={
                     <Typography
                         variant="h6"
-                        noWrap
                         sx={{
+                            display: "-webkit-box",
                             overflow: "hidden",
-                            whiteSpace: "nowrap",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 2,
                             textOverflow: "ellipsis",
-                            width: "300px",
+                            minHeight: "60px",
                         }}
                     >
                         {product.title}
@@ -66,6 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         WebkitBoxOrient: "vertical",
                         WebkitLineClamp: 5,
                         textOverflow: "ellipsis",
+                        minHeight: "150px",
                     }}
                 >
                     {product.description}
