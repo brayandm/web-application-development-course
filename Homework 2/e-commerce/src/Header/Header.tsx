@@ -7,7 +7,7 @@ import { Badge } from "@mui/material";
 import { Product } from "../ProductCard/ProductCard";
 
 interface HeaderProps {
-    cart: Product[];
+    cart: { product: Product; quantity: number }[];
     setCartTab: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -43,7 +43,13 @@ export default function Header({ cart, setCartTab }: HeaderProps) {
                             setCartTab(true);
                         }}
                     >
-                        <Badge badgeContent={cart.length} color="secondary">
+                        <Badge
+                            badgeContent={cart.reduce(
+                                (total, item) => total + item.quantity,
+                                0
+                            )}
+                            color="secondary"
+                        >
                             <ShoppingCartIcon />
                         </Badge>
                     </IconButton>

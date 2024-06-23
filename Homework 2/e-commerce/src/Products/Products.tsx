@@ -2,8 +2,10 @@ import ProductCard, { Product } from "../ProductCard/ProductCard";
 
 interface ProductsProps {
     products: Product[];
-    cart: Product[];
-    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+    cart: { product: Product; quantity: number }[];
+    setCart: React.Dispatch<
+        React.SetStateAction<{ product: Product; quantity: number }[]>
+    >;
 }
 
 export default function Products({ products, cart, setCart }: ProductsProps) {

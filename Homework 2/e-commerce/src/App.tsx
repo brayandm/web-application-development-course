@@ -20,7 +20,9 @@ function App() {
         fetchProducts();
     }, []);
 
-    const [cart, setCart] = useState<Product[]>([]);
+    const [cart, setCart] = useState<{ product: Product; quantity: number }[]>(
+        []
+    );
 
     useEffect(() => {
         setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
