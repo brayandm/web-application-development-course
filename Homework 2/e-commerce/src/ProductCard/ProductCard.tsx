@@ -272,6 +272,53 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                                 {product.rating.count} reviews
                             </Typography>
                         </Box>
+                        <CardActions
+                            disableSpacing
+                            sx={{ justifyContent: "center" }}
+                        >
+                            <Tooltip title="Add to cart" placement="top">
+                                <IconButton
+                                    aria-label="add to cart"
+                                    color="primary"
+                                    onClick={handleAddToCartClick}
+                                >
+                                    <Badge
+                                        badgeContent={
+                                            JSON.parse(
+                                                localStorage.getItem("cart") ||
+                                                    "[]"
+                                            ).filter(
+                                                (cartProduct: Product) =>
+                                                    cartProduct.id ===
+                                                    product.id
+                                            ).length
+                                        }
+                                        color="success"
+                                    >
+                                        <AddShoppingCartIcon />
+                                    </Badge>
+                                </IconButton>
+                            </Tooltip>
+                            {JSON.parse(
+                                localStorage.getItem("cart") || "[]"
+                            ).filter(
+                                (cartProduct: Product) =>
+                                    cartProduct.id === product.id
+                            ).length > 0 ? (
+                                <Tooltip
+                                    title="Remove from cart"
+                                    placement="top"
+                                >
+                                    <IconButton
+                                        aria-label="remove from cart"
+                                        color="error"
+                                        onClick={handleRemoveFromCartClick}
+                                    >
+                                        <RemoveShoppingCartIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            ) : null}
+                        </CardActions>
                     </Box>
                 </Fade>
             </Modal>
