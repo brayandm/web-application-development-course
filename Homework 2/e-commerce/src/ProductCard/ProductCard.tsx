@@ -14,6 +14,8 @@ import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { Badge } from "@mui/material";
 
 export interface Product {
     id: number;
@@ -57,6 +59,22 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
         let storageCart = localStorage.getItem("cart") || "[]";
 
         storageCart = JSON.stringify([...JSON.parse(storageCart), product]);
+
+        localStorage.setItem("cart", storageCart);
+
+        setCart(JSON.parse(storageCart));
+    };
+
+    const handleRemoveFromCartClick = (event: React.MouseEvent) => {
+        event.stopPropagation();
+
+        let storageCart = localStorage.getItem("cart") || "[]";
+
+        storageCart = JSON.stringify(
+            JSON.parse(storageCart).filter(
+                (cartProduct: Product) => cartProduct.id !== product.id
+            )
+        );
 
         localStorage.setItem("cart", storageCart);
 
@@ -151,7 +169,26 @@ export default function ProductCard({ product, setCart }: ProductCardProps) {
                         color="primary"
                         onClick={handleAddToCartClick}
                     >
-                        <AddShoppingCartIcon />
+                        <Badge
+                            badgeContent={
+                                JSON.parse(
+                                    localStorage.getItem("cart") || "[]"
+                                ).filter(
+                                    (cartProduct: Product) =>
+                                        cartProduct.id === product.id
+                                ).length
+                            }
+                            color="success"
+                        >
+                            <AddShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
+                    <IconButton
+                        aria-label="remove from cart"
+                        color="error"
+                        onClick={handleRemoveFromCartClick}
+                    >
+                        <RemoveShoppingCartIcon />
                     </IconButton>
                 </CardActions>
             </Card>
