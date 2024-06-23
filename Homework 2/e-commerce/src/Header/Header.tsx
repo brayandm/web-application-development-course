@@ -14,7 +14,7 @@ export default function Header({ cart }: HeaderProps) {
     return (
         <>
             <AppBar
-                position="static"
+                position="sticky"
                 sx={{
                     display: "flex",
                     justifyContent: "center",
