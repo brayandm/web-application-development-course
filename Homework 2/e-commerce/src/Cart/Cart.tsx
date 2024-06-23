@@ -19,7 +19,16 @@ interface CartProps {
 
 export default function Cart({ cart, setCart }: CartProps) {
     const handleRemoveFromCart = (id: number) => {
-        setCart(cart.filter((item) => item.product.id !== id));
+        let localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        localStorageCart = localStorageCart.filter(
+            (item: { product: Product; quantity: number }) =>
+                item.product.id !== id
+        );
+
+        localStorage.setItem("cart", JSON.stringify(localStorageCart));
+
+        setCart(localStorageCart);
     };
 
     const calculateTotal = () => {
