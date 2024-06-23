@@ -48,6 +48,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleAddToCartClick = (event: React.MouseEvent) => {
+        event.stopPropagation();
+    };
+
     return (
         <>
             <Card
@@ -131,7 +135,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </CardContent>
                 <Divider variant="middle" />
                 <CardActions disableSpacing sx={{ justifyContent: "center" }}>
-                    <IconButton aria-label="add to cart" color="primary">
+                    <IconButton
+                        aria-label="add to cart"
+                        color="primary"
+                        onClick={handleAddToCartClick}
+                    >
                         <AddShoppingCartIcon />
                     </IconButton>
                 </CardActions>
