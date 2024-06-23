@@ -8,7 +8,7 @@ import Cart from "./Cart";
 
 function App() {
     const [products, setProducts] = useState([]);
-    const [cartTab, setCartTab] = useState(false);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -28,9 +28,15 @@ function App() {
         setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
     }, []);
 
+    const [isCartTab, setIsCartTab] = useState(false);
+
+    useEffect(() => {
+        setIsCartTab(window.location.search.includes("tab=cart"));
+    }, [refresh]);
+
     return (
         <>
-            <Header cart={cart} setCartTab={setCartTab} />
+            <Header cart={cart} setRefresh={setRefresh} />
             {products.length == 0 ? (
                 <Box
                     sx={{
@@ -43,7 +49,7 @@ function App() {
                 >
                     <CircularProgress />
                 </Box>
-            ) : !cartTab ? (
+            ) : !isCartTab ? (
                 <Products products={products} cart={cart} setCart={setCart} />
             ) : (
                 <Cart cart={cart} setCart={setCart} />

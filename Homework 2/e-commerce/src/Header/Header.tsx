@@ -8,10 +8,10 @@ import { Product } from "../ProductCard/ProductCard";
 
 interface HeaderProps {
     cart: { product: Product; quantity: number }[];
-    setCartTab: React.Dispatch<React.SetStateAction<boolean>>;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Header({ cart, setCartTab }: HeaderProps) {
+export default function Header({ cart, setRefresh }: HeaderProps) {
     return (
         <>
             <AppBar
@@ -28,7 +28,10 @@ export default function Header({ cart, setCartTab }: HeaderProps) {
                         component="div"
                         sx={{ flexGrow: 1, cursor: "pointer" }}
                         onClick={() => {
-                            setCartTab(false);
+                            const url = new URL(window.location.href);
+                            url.searchParams.delete("tab");
+                            window.history.pushState({}, "", url.toString());
+                            setRefresh((prev) => !prev);
                         }}
                     >
                         E-Commerce
@@ -40,7 +43,12 @@ export default function Header({ cart, setCartTab }: HeaderProps) {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                         onClick={() => {
-                            setCartTab(true);
+                            window.history.pushState(
+                                { tab: "cart" },
+                                "cart",
+                                "?tab=cart"
+                            );
+                            setRefresh((prev) => !prev);
                         }}
                     >
                         <Badge
