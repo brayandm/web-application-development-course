@@ -26,7 +26,7 @@ export default function Header({ cart, setRefresh }: HeaderProps) {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, cursor: "pointer" }}
+                        sx={{ flexGrow: 1 }}
                         onClick={() => {
                             const url = new URL(window.location.href);
                             url.searchParams.delete("tab");
@@ -34,7 +34,15 @@ export default function Header({ cart, setRefresh }: HeaderProps) {
                             setRefresh((prev) => !prev);
                         }}
                     >
-                        E-Commerce
+                        <p
+                            style={{
+                                cursor: "pointer",
+                                userSelect: "none",
+                                width: "120px",
+                            }}
+                        >
+                            E-Commerce
+                        </p>
                     </Typography>
                     <IconButton
                         size="large"
