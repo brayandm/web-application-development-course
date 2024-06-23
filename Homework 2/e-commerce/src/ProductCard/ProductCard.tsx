@@ -33,9 +33,12 @@ const modalStyle = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 500,
     bgcolor: "background.paper",
     boxShadow: 24,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     p: 4,
 };
 
@@ -153,6 +156,17 @@ export default function ProductCard({ product }: ProductCardProps) {
                         >
                             {product.title}
                         </Typography>
+                        <CardMedia
+                            component="img"
+                            height="194"
+                            image={product.image}
+                            alt={product.title}
+                            sx={{
+                                objectFit: "contain",
+                                backgroundColor: "#e0e0e0",
+                                marginTop: "10px",
+                            }}
+                        />
                         <Typography
                             id="product-modal-description"
                             sx={{ mt: 2 }}
