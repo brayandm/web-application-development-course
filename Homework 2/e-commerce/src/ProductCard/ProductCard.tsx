@@ -67,7 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         WebkitBoxOrient: "vertical",
                         WebkitLineClamp: 5,
                         textOverflow: "ellipsis",
-                        minHeight: "150px",
+                        minHeight: "100px",
                     }}
                 >
                     {product.description}
