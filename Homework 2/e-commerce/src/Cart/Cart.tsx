@@ -6,8 +6,10 @@ import {
     Divider,
     List,
     ListItem,
+    Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Product } from "../ProductCard/ProductCard";
 
 interface CartProps {
@@ -15,9 +17,10 @@ interface CartProps {
     setCart: React.Dispatch<
         React.SetStateAction<{ product: Product; quantity: number }[]>
     >;
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Cart({ cart, setCart }: CartProps) {
+export default function Cart({ cart, setCart, setRefresh }: CartProps) {
     const handleRemoveFromCart = (id: number) => {
         let localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -40,8 +43,22 @@ export default function Cart({ cart, setCart }: CartProps) {
             .toFixed(2);
     };
 
+    const handleBackClick = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("tab");
+        window.history.pushState({}, "", url.toString());
+        setRefresh((prev) => !prev);
+    };
+
     return (
         <Box sx={{ p: 2 }}>
+            <Button
+                startIcon={<ArrowBackIcon />}
+                onClick={handleBackClick}
+                sx={{ mb: 2 }}
+            >
+                Back
+            </Button>
             <Typography variant="h4" sx={{ mb: 2 }}>
                 Shopping Cart
             </Typography>

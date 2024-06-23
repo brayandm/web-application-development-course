@@ -52,7 +52,7 @@ function App() {
             ) : !isCartTab ? (
                 <Products products={products} cart={cart} setCart={setCart} />
             ) : (
-                <Cart cart={cart} setCart={setCart} />
+                <Cart cart={cart} setCart={setCart} setRefresh={setRefresh} />
             )}
         </>
     );
