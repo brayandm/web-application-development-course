@@ -7,6 +7,7 @@ import { Product } from "./ProductCard/ProductCard";
 
 function App() {
     const [products, setProducts] = useState([]);
+    const [cartTab, setCartTab] = useState(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -26,7 +27,7 @@ function App() {
 
     return (
         <>
-            <Header cart={cart} />
+            <Header cart={cart} setCartTab={setCartTab} />
             {products.length == 0 ? (
                 <Box
                     sx={{
@@ -39,8 +40,10 @@ function App() {
                 >
                     <CircularProgress />
                 </Box>
-            ) : (
+            ) : !cartTab ? (
                 <Products products={products} cart={cart} setCart={setCart} />
+            ) : (
+                <div>Cart</div>
             )}
         </>
     );

@@ -8,9 +8,10 @@ import { Product } from "../ProductCard/ProductCard";
 
 interface HeaderProps {
     cart: Product[];
+    setCartTab: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Header({ cart }: HeaderProps) {
+export default function Header({ cart, setCartTab }: HeaderProps) {
     return (
         <>
             <AppBar
@@ -25,7 +26,10 @@ export default function Header({ cart }: HeaderProps) {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1 }}
+                        sx={{ flexGrow: 1, cursor: "pointer" }}
+                        onClick={() => {
+                            setCartTab(false);
+                        }}
                     >
                         E-Commerce
                     </Typography>
@@ -35,6 +39,9 @@ export default function Header({ cart }: HeaderProps) {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        onClick={() => {
+                            setCartTab(true);
+                        }}
                     >
                         <Badge badgeContent={cart.length} color="secondary">
                             <ShoppingCartIcon />
