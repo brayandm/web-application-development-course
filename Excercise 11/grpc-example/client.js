@@ -42,6 +42,28 @@ const getUser = (id) => {
     });
 };
 
+const editUser = (user) => {
+    return new Promise((resolve, reject) => {
+        client.editUser(user, (error, response) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(response);
+        });
+    });
+};
+
+const deleteUser = (id) => {
+    return new Promise((resolve, reject) => {
+        client.deleteUser(id, (error, response) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(response);
+        });
+    });
+};
+
 const main = async () => {
     try {
         const newUser = await addUser({
@@ -52,6 +74,17 @@ const main = async () => {
 
         const user = await getUser({ id: 3 });
         console.log("Fetched User:", user);
+
+        const updatedUser = await editUser({
+            id: 3,
+            name: "User 3 Updated",
+            email: "student@example.com",
+        });
+
+        console.log("Updated User:", updatedUser);
+
+        const deletedUser = await deleteUser({ id: 3 });
+        console.log("Deleted User:", deletedUser);
     } catch (error) {
         console.error("Error:", error);
     }
