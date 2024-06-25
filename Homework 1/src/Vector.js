@@ -97,39 +97,4 @@ class Vector {
     }
 }
 
-// Example usage:
-const a = new Vector(2, 1);
-console.log(`Vector a: (${a.x}, ${a.y})`);
-
-const b = Vector.of(-2, 3);
-console.log(`Vector b: (${b.x}, ${b.y})`);
-
-const scalar = 2;
-
-const sum = a.add(b);
-
-console.log(`Sum of a and b: (${sum.x}, ${sum.y})`);
-
-const diff = a.subtract(b);
-
-console.log(`Difference of a and b: (${diff.x}, ${diff.y})`);
-
-const product = a.multiply(scalar);
-
-console.log(`Product of a and ${scalar}: (${product.x}, ${product.y})`);
-
-const abs = sum.abs();
-
-console.log(`Length of sum: ${abs}`);
-
-const unit = sum.unit();
-
-console.log(`Unit vector of sum: (${unit.x}, ${unit.y})`);
-
-const angle = sum.angle();
-
-console.log(`Direction angle (rad) of sum: ${angle}`);
-
-const angleDeg = sum.angle(false);
-
-console.log(`Direction angle (deg) of sum: ${angleDeg}`);
+module.exports = Vector;
